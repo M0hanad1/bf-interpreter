@@ -1,6 +1,7 @@
 bin*
 *.exe
 *.bf
+*.b
 *test
 *obj*
 *.o

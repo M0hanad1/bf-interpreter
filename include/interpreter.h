@@ -4,7 +4,6 @@
 #include <stdbool.h>
 #include <stdio.h>
 
-bool build_jumps(const char *code, size_t **output);
 bool run(char *code, size_t *jumps);
 
 #endif

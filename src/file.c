@@ -1,8 +1,30 @@
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 bool open_file(char *name, FILE **output) {
+    char file_extention[3] = {0};
+    size_t count = 0;
+
+    for (size_t i = 0; name[i]; i++) {
+        if (count > 2) {
+            fprintf(stderr, "This file isn't a .bf/.b file\n");
+            return false;
+        }
+        if (count) {
+            file_extention[count - 1] = name[i];
+            count++;
+        }
+        if (name[i] == '.') count = 1;
+    }
+
+    file_extention[count] = '\0';
+    if (strcmp("b", file_extention) && strcmp("bf", file_extention)) {
+        fprintf(stderr, "This file isn't a .bf/.b file\n");
+        return false;
+    }
+
     FILE *file = fopen(name, "r");
     if (!file) {
         fprintf(stderr, "Couldn't open the bf file: \"%s\"\n", name);
